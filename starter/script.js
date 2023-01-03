@@ -90,18 +90,25 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  const password = []
-  for (let i = 0; )
+  console.log("Your password can have a length between 10 and 64 characters";
+  console.log("You can use lowercase letters");
+  console.log("You can use uppercase letters");
+  console.log("You can use numbers");
+  console.log("You can use special characters");
 }
 
 // Function for getting a random element from an array
+var passwordLength = 10;
+var passwordName = "";
 function getRandom(arr) {
-
+  return Math.floor(Math.random() * arr);
 }
 
 // Function to generate password with user input
-function generatePassword() {
-
+function generatePassword(arr, passwordLength) {
+  for (let i = 0; i <= passwordLength; i++) {
+    return passwordName += arr[i];
+  }
 }
 
 // Get references to the #generate element
