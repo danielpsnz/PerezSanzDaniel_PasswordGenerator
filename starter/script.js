@@ -88,13 +88,36 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// Variable declaration
+var length = "";
+var special;
+var numbers;
+var uppercase;
+var lowercase;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-  console.log("Your password can have a length between 10 and 64 characters";
-  console.log("You can use lowercase letters");
-  console.log("You can use uppercase letters");
-  console.log("You can use numbers");
-  console.log("You can use special characters");
+  var length = (prompt("How many characters would you like your password to contain? You can choose a length between 10 and 64 characters."));
+
+  // Check if the value is outside the parameters we want.
+  while(length < 10 || length > 64) {
+    alert("Password length must be between 10-64 characters. Try it again");
+    var length = (prompt("How many characters would you like your password to contain? You can choose a length between 10 and 64 characters."));
+    } 
+  
+  // Check which character type the user wants to use.
+  var special = confirm("Click OK to confirm if you would like to include special characters");
+  var numbers = confirm("Click OK to confirm if you would like to include numeric characters");    
+  var lowercase = confirm("Click OK to confirm if you would like to include lowercase characters");
+  var uppercase = confirm("Click OK to confirm if you would like to include uppercase characters");
+
+  // Check if his or her preference is valid.
+  while(uppercase === false && lowercase === false && special === false && numbers === false) {
+    alert("You must choose at least one parameter");
+    var special = confirm("Click OK to confirm if you would like to include special characters");
+    var numbers = confirm("Click OK to confirm if you would like to include numeric characters");    
+    var lowercase = confirm("Click OK to confirm if you would like to include lowercase characters");
+    var uppercase = confirm("Click OK to confirm if you would like to include uppercase characters");  
 }
 
 // Function for getting a random element from an array
