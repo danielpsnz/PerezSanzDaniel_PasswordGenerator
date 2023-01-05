@@ -121,10 +121,24 @@ function getPasswordOptions() {
 }
 
 // Function for getting a random element from an array
-var passwordLength = 10;
-var passwordName = "";
 function getRandom(arr) {
-  return Math.floor(Math.random() * arr);
+  var passwordCharacters = []
+  if (arr === special) {
+    passwordCharacters = passwordCharacters.concat(specialCharacters);
+  } 
+  if (arr === numbers) {
+    passwordCharacters = passwordCharacters.concat(numericCharacters);
+  } 
+  if (arr === lowercase) {
+    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters);
+  }
+  if (arr === uppercase) {
+    passwordCharacters = passwordCharacters.concat(upperCasedCharacters);
+  }
+  
+  //console.log(passwordCharacters)
+
+  return passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
 }
 
 // Function to generate password with user input
