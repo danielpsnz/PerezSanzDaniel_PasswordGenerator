@@ -1,3 +1,5 @@
+document.querySelector("#generate").addEventListener("click", writePassword);
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -118,34 +120,38 @@ function getPasswordOptions() {
     var numbers = confirm("Click OK to confirm if you would like to include numeric characters");    
     var lowercase = confirm("Click OK to confirm if you would like to include lowercase characters");
     var uppercase = confirm("Click OK to confirm if you would like to include uppercase characters");  
+  }
+
+  var passwordCharacters = []
+  if (passwordCharacters === special) {
+    passwordCharacters = passwordCharacters.concat(specialCharacters);
+  } 
+  if (passwordCharacters === numbers) {
+    passwordCharacters = passwordCharacters.concat(numericCharacters);
+  } 
+  if (passwordCharacters === lowercase) {
+    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters);
+  }
+  if (passwordCharacters === uppercase) {
+    passwordCharacters = passwordCharacters.concat(upperCasedCharacters);
+  }
+
+  console.log(passwordCharacters);
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-  var passwordCharacters = []
-  if (arr === special) {
-    passwordCharacters = passwordCharacters.concat(specialCharacters);
-  } 
-  if (arr === numbers) {
-    passwordCharacters = passwordCharacters.concat(numericCharacters);
-  } 
-  if (arr === lowercase) {
-    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters);
-  }
-  if (arr === uppercase) {
-    passwordCharacters = passwordCharacters.concat(upperCasedCharacters);
-  }
-  
-  //console.log(passwordCharacters)
-
-  return passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+function getRandom(array) {
+  array[Math.floor(Math.random() * array.length)];
 }
 
 // Function to generate password with user input
-function generatePassword(arr, passwordLength) {
-  for (let i = 0; i <= passwordLength; i++) {
-    return passwordName += arr[i];
+function generatePassword() {
+  var passwordName = "";
+  for (let i = 0; i <= length; i++) {
+    password =+ getRandom(passwordCharacters);
+    console.log(passwordName);
   }
+  return passwordName;
 }
 
 // Get references to the #generate element
