@@ -90,80 +90,74 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Variable declaration
-var length = "";
-var special;
-var numbers;
-var uppercase;
-var lowercase;
+// Variable Declaration 
+var confirmLength = "";
+var confirmSpecialCharacter;
+var confirmNumericCharacter;
+var confirmUpperCase;
+var confirmLowerCase;
 
-// Function to prompt user for password options
-function getPasswordOptions() {
-  var length = (prompt("How many characters would you like your password to contain? You can choose a length between 10 and 64 characters."));
-
-  // Check if the value is outside the parameters we want.
-  while(length < 10 || length > 64) {
-    alert("Password length must be between 10-64 characters. Try it again");
-    var length = (prompt("How many characters would you like your password to contain? You can choose a length between 10 and 64 characters."));
-    } 
-  
-  // Check which character type the user wants to use.
-  var special = confirm("Click OK to confirm if you would like to include special characters");
-  var numbers = confirm("Click OK to confirm if you would like to include numeric characters");    
-  var lowercase = confirm("Click OK to confirm if you would like to include lowercase characters");
-  var uppercase = confirm("Click OK to confirm if you would like to include uppercase characters");
-
-  // Check if his or her preference is valid.
-  while(uppercase === false && lowercase === false && special === false && numbers === false) {
-    alert("You must choose at least one parameter");
-    var special = confirm("Click OK to confirm if you would like to include special characters");
-    var numbers = confirm("Click OK to confirm if you would like to include numeric characters");    
-    var lowercase = confirm("Click OK to confirm if you would like to include lowercase characters");
-    var uppercase = confirm("Click OK to confirm if you would like to include uppercase characters");  
-  }
-
-  var passwordCharacters = []
-  if (passwordCharacters === special) {
-    passwordCharacters = passwordCharacters.concat(specialCharacters);
-  } 
-  if (passwordCharacters === numbers) {
-    passwordCharacters = passwordCharacters.concat(numericCharacters);
-  } 
-  if (passwordCharacters === lowercase) {
-    passwordCharacters = passwordCharacters.concat(lowerCasedCharacters);
-  }
-  if (passwordCharacters === uppercase) {
-    passwordCharacters = passwordCharacters.concat(upperCasedCharacters);
-  }
-
-  console.log(passwordCharacters);
-}
-
-// Function for getting a random element from an array
-function getRandom(array) {
-  array[Math.floor(Math.random() * array.length)];
-}
-
-// Function to generate password with user input
+// Prompt to confirm how many characters the user would like in their password
 function generatePassword() {
-  var passwordName = "";
-  for (let i = 0; i <= length; i++) {
-    password =+ getRandom(passwordCharacters);
-    console.log(passwordName);
-  }
-  return passwordName;
-}
+  var confirmLength = (prompt("How many characters would you like your password to contain?"));
 
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+  // Validate if the answer is outside the parameters 
+  while(confirmLength <= 9 || confirmLength >= 65) {
+      alert("Password length must be between 10-64 characters Try again");
+      var confirmLength = (prompt("How many characters would you like your password to contain?"));
+      } 
+
+      // Repeat back how many charactes the user will have  
+      alert(`Your password will have ${confirmLength} characters`);
+
+    // Prompt the parameters of the password 
+    var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
+    var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
+    var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
+    var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");
+      // Validate if the answer is outside the parameters 
+      while(confirmUpperCase === false && confirmLowerCase === false && confirmSpecialCharacter === false && confirmNumericCharacter === false) {
+        alert("You must choose at least one parameter");
+        var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
+        var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
+        var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
+        var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");   
+    } 
+
+      var passwordCharacters = []
+      
+    if (confirmSpecialCharacter) {
+      passwordCharacters = passwordCharacters.concat(specialCharacters)
+    }
+
+    if (confirmNumericCharacter) {
+      passwordCharacters = passwordCharacters.concat(numericCharacters)
+    }
+      
+    if (confirmLowerCase) {
+      passwordCharacters = passwordCharacters.concat(lowerCasedCharacters)
+    }
+
+    if (confirmUpperCase) {
+      passwordCharacters = passwordCharacters.concat(upperCasedCharacters)
+    }
+
+      console.log(passwordCharacters)
+
+      // Empty string to be filled based on for loop selecting random characters from the array
+      var randomPassword = ""
+      
+      for (var i = 0; i < confirmLength; i++) {
+        randomPassword = randomPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+        console.log(randomPassword)
+      }
+      return randomPassword;
+}
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector('#password');
+  var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
